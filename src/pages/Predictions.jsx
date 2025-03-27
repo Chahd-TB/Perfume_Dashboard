@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Sidebar from "../components/Sidebar";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
@@ -37,17 +37,27 @@ const Predictions = () => {
     "Cologne"
   ];
 
+  const isDarkMode = document.documentElement.classList.contains("dark");
+
+  useEffect(() => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    document.querySelectorAll(".removeprism").forEach((el) => {
+      el.classList.toggle("prism-card", !isDarkMode);
+    });
+  }, []);
+
+    
   return (
     <div className="flex min-h-screen bg-gray-100 dark:bg-[#272727] ">
       <Sidebar />
-      <div className="flex-1 p-8 ml-64">
+      <div className="flex-1 p-8 ml-64 max-[700px]:ml-0">
           <div className="relative z-10 bg-white/100 backdrop-blur-lg p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
             <h1 className="text-3xl font-bold text-black mb-2  dark:text-gray-300">Sales Predictions</h1>
             <p className="text-black-100">Analyze and predict perfume sales trends</p>
           </div>
 
           <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+            <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
               <label className="block text-sm font-medium text-gray-700 mb-2 dark:text-gray-300">Gender</label>
               <select 
                 value={gender}
@@ -59,7 +69,7 @@ const Predictions = () => {
               </select>
             </div>
 
-            <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+            <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
               <label className="block text-sm font-medium text-gray-700 mb-2  dark:text-gray-300">Brand</label>
               <select
                 value={selectedBrand}
@@ -73,7 +83,7 @@ const Predictions = () => {
               </select>
             </div>
 
-            <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+            <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
               <label className="block text-sm font-medium text-gray-700 mb-2  dark:text-gray-300">Type</label>
               <select
                 value={perfumeType}
@@ -87,7 +97,7 @@ const Predictions = () => {
               </select>
             </div>
 
-            <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+            <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
               <label className="block text-sm font-medium text-gray-700 mb-2  dark:text-gray-300">Perfume Name</label>
               <input
                 type="text"
@@ -100,7 +110,7 @@ const Predictions = () => {
           </div>
 
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-            <div className="prism-card p-6 rounded-xl col-span-2 dark:bg-[#1e1e1e] dark:text-gray-300">
+            <div className="removeprism prism-card p-6 rounded-xl col-span-2 dark:bg-[#1e1e1e] dark:text-gray-300">
               <h2 className="text-xl font-semibold mb-4 text-purple-800">Sales Prediction Trend</h2>
               <div className="h-[400px]">
                 <ResponsiveContainer width="100%" height="100%">
@@ -131,19 +141,19 @@ const Predictions = () => {
             </div>
 
             <div className="space-y-6">
-              <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+              <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
                 <h3 className="text-lg font-semibold text-purple-800 mb-2">Predicted Revenue</h3>
                 <p className="text-3xl font-bold gradient-text">$24,500</p>
                 <p className="text-sm text-purple-600 mt-1">+12% from last period</p>
               </div>
               
-              <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+              <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
                 <h3 className="text-lg font-semibold text-purple-800 mb-2">Average Price</h3>
                 <p className="text-3xl font-bold gradient-text">$165</p>
                 <p className="text-sm text-purple-600 mt-1">Based on current selection</p>
               </div>
               
-              <div className="prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
+              <div className="removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] dark:text-gray-300">
                 <h3 className="text-lg font-semibold text-purple-800 mb-2">Confidence Score</h3>
                 <p className="text-3xl font-bold gradient-text">92%</p>
                 <p className="text-sm text-purple-600 mt-1">High accuracy prediction</p>
@@ -151,7 +161,7 @@ const Predictions = () => {
             </div>
           </div>
 
-          <div className="mt-8 prism-card p-6 rounded-xl dark:bg-[#1e1e1e] ">
+          <div className="mt-8 removeprism prism-card p-6 rounded-xl dark:bg-[#1e1e1e] ">
             <h2 className="text-xl font-semibold mb-4 text-purple-800 ">Additional Insights</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div>

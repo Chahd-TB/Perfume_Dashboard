@@ -33,7 +33,7 @@
     rgba(111, 62, 143, 0.185) 90deg,
     transparent 180deg
   );
-  animation: rotate 8s linear infinite;
+  animation: rotate 10s linear infinite;
 }
 
 .prism-card::before {

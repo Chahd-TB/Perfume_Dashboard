@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "../styles/style.css";
-import ItemsList from "../components/ItemsList"; // ✅ FIXED IMPORT
+import ItemsList from "../components/ItemsList"; 
 
 import {
   Chart,
@@ -37,6 +37,22 @@ const Charts = () => {
     // Ensure all refs exist before accessing them
     if (!barRef.current || !barTrendRef.current || !scatterRef1.current || !scatterRef2.current || !brandRef.current || !perfumeRef.current) return;
 
+    // Check for dark mode
+    const isDarkMode = document.documentElement.classList.contains("dark");
+
+    // Select all elements with the "removeprism" class
+    const elements = document.querySelectorAll(".removeprism");
+
+    elements.forEach((el) => {
+      if (el.classList.contains("removeprism")) {
+        if (isDarkMode) {
+          el.classList.remove("prism-card");
+        } else {
+          el.classList.add("prism-card");
+        }
+      }
+    });
+
     // Get canvas contexts
     const ctx1 = barRef.current.getContext("2d");
     const ctx2 = barTrendRef.current.getContext("2d");
@@ -66,7 +82,6 @@ const Charts = () => {
         ctx.save();
         ctx.globalCompositeOperation = "destination-over";
 
-        const isDarkMode = document.documentElement.classList.contains("dark");
         ctx.fillStyle = isDarkMode ? "#1e1e1e" : "white";
         ctx.fillRect(0, 0, chart.width, chart.height);
 
@@ -133,26 +148,26 @@ const Charts = () => {
   return (
     <div className="max-[800px]:ml-5">
       {/* First row of charts */}
-      <div className="flex max-[800px]:flex-col">
-        <div className="chart-container rounded-lg dark:bg-[#1e1e1e]">
+      <div className="flex max-[800px]:flex-col ">
+        <div className="removeprism prism-card chart-container rounded-lg dark:bg-[#1e1e1e]">
           <canvas ref={scatterRef1} className="p-5 chart"></canvas>
         </div>
-        <div className="chart-container rounded-lg dark:bg-[#1e1e1e]">
+        <div className="removeprism prism-card chart-container rounded-lg dark:bg-[#1e1e1e]">
           <canvas ref={barTrendRef} className="p-5 pb-0 chart"></canvas>
         </div>
-        <div className="chart-container rounded-lg dark:bg-[#1e1e1e]">
+        <div className="removeprism prism-card chart-container rounded-lg dark:bg-[#1e1e1e]">
           <canvas ref={barRef} className="p-5 pb-0 chart"></canvas>
         </div>
       </div>
 
       {/* Second row of charts */}
       <div className="flex max-[800px]:flex-col">
-        <div className="ch rounded-lg max-[800px]:w-[95%] max-[800px]:ml-0 dark:bg-[#1e1e1e]">
+        <div className="removeprism prism-card ch rounded-lg max-[800px]:w-[95%] max-[800px]:ml-0 dark:bg-[#1e1e1e]">
           <canvas ref={scatterRef2} className="p-5 chart"></canvas>
         </div>
 
         {/* Brands section */}
-        <div className="option w-[30%] p-5 mt-5 dark:bg-[#1e1e1e] dark:text-gray-300 bg-white max-[800px]:w-[95%] rounded-lg flex flex-col justify-between">
+        <div className="removeprism prism-card option w-[30%] p-5 mt-5 dark:bg-[#1e1e1e] dark:text-gray-300 bg-white max-[800px]:w-[95%] rounded-lg flex flex-col justify-between">
           <div>
             <ItemsList />
           </div>
@@ -161,10 +176,10 @@ const Charts = () => {
 
       {/* Third row of charts */}
       <div className="flex justify-between max-[800px]:flex-col">
-        <div className="charts rounded-lg dark:bg-[#1e1e1e]">
+        <div className="removeprism prism-card charts rounded-lg dark:bg-[#1e1e1e]">
           <canvas ref={brandRef} className="p-5 chart"></canvas>
         </div>
-        <div className="charts rounded-lg dark:bg-[#1e1e1e]">
+        <div className="removeprism prism-card charts rounded-lg dark:bg-[#1e1e1e]">
           <canvas ref={perfumeRef} className="p-5 chart"></canvas>
         </div>
       </div>

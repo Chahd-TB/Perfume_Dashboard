@@ -13,9 +13,13 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "chart.js": "^4.4.8",
+    "chartjs-chart-geo": "^4.3.4",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.344.0",
+    "plotly.js-dist": "^3.0.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.22.3",
     "recharts": "^2.12.2"
   },

@@ -18,7 +18,7 @@ const Cards = () => {
             
                 <div className="flex justify-around w-full flex-wrap">
             {cardData.map((card, index) => (
-            <div key={index} className="bg-white dark:bg-[#1e1e1e] shadow-md  border-gray-300 rounded-lg p-3 flex items-center space-x-3 w-[180px] h-[110px] mb-5 mt-5 justify-around">
+            <div key={index} className="bg-white dark:bg-[#1e1e1e] shadow-md  rounded-lg p-3 flex items-center space-x-3 w-[180px] h-[110px] mb-5 mt-5 justify-around">
                 <span className="material-symbols-outlined text-gradient text-4xl">
                   {card.icon}
                 </span>
